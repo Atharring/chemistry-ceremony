@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chemistry Ceremony</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <%- include("partials/header") %>
+
+  <div class="container">
+    <div class="card">
+      <h1>Registration</h1>
+      <p>Please enter your details to access the ceremony welcome page.</p>
+
+      <form class="form" method="POST" action="/login">
+        <div class="input">
+          <div class="label">Full Name</div>
+          <input class="field" type="text" name="name" placeholder="Your full name" required>
+        </div>
+
+        <div class="input">
+          <div class="label">Email</div>
+          <input class="field" type="email" name="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="input">
+          <div class="label">Phone Number</div>
+          <input class="field" type="text" name="phone" placeholder="07xxxxxxxx" required>
+        </div>
+
+        <div class="input">
+          <div class="label">University / Company</div>
+          <input class="field" type="text" name="organization" placeholder="Jerash University / Company name" required>
+        </div>
+
+        <div class="actions full">
+          <span class="badge">SSCS 2026</span>
+          <button class="btn primary" type="submit">Enter Ceremony</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

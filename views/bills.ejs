@@ -1,0 +1,57 @@
+<%- include('partials/header') %>
+
+<div class="container my-4">
+  <div class="card p-4 shadow-sm border-0">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="mb-0">Split Bills</h3>
+    </div>
+
+    <div class="row g-3 align-items-end">
+      <div class="col-md-4">
+        <label class="form-label">Bill name</label>
+        <input id="billName" class="form-control" placeholder="e.g., WiFi">
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Total cost</label>
+        <input id="totalCost" type="number" step="0.01" class="form-control" placeholder="e.g., 30">
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Split by</label>
+        <input id="splitBy" type="number" min="1" class="form-control" placeholder="e.g., 3">
+      </div>
+
+      <div class="col-md-2">
+        <button type="button" class="btn btn-success w-100" onclick="calcSplit()">Calculate</button>
+      </div>
+    </div>
+
+    <div id="resultBox" class="alert mt-3 d-none"></div>
+  </div>
+</div>
+
+<script>
+  function calcSplit() {
+    const name = document.getElementById('billName').value.trim();
+    const total = Number(document.getElementById('totalCost').value);
+    const people = Number(document.getElementById('splitBy').value);
+
+    const box = document.getElementById('resultBox');
+
+    if (!total || total <= 0 || !people || people <= 0) {
+      box.className = 'alert alert-danger mt-3';
+      box.classList.remove('d-none');
+      box.textContent = 'Enter valid total cost and split by (must be > 0).';
+      return;
+    }
+
+    const each = (total / people).toFixed(2);
+
+    box.className = 'alert alert-info mt-3';
+    box.classList.remove('d-none');
+    box.innerHTML = `<strong>${name || 'Bill'}</strong>: Each person pays <strong>$${each}</strong> (${people} people)`;
+  }
+</script>
+
+<%- include('partials/footer') %>

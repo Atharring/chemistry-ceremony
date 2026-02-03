@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <%- include("partials/header") %>
+
+  <div class="container">
+    <div class="card">
+      <h1>Welcome, <%= user.name %></h1>
+      <p>
+        We’re happy to have you with us (<%= user.email %>) from
+        <strong><%= user.organization %></strong>.
+      </p>
+
+      <h2 style="margin-top:18px;">About the Ceremony</h2>
+      <p>
+        <!-- Put your welcome paragraph here -->
+      </p>
+
+      <h2 style="margin-top:18px;">Ceremony Summary</h2>
+      <ul style="color: rgba(234,240,255,0.78); line-height: 1.8;">
+        <li>Opening remarks and introductions</li>
+        <li>Key highlights and achievements</li>
+        <li>Certificates / acknowledgments</li>
+        <li>Closing and group photo</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<%- include('partials/header') %>
+
+
+<div class="card p-4 shadow-sm border-0 mb-4">
+  <h3 class="mb-3">Monthly Report</h3>
+
+  <form method="GET" action="/reports" class="row g-2 align-items-end">
+    <div class="col-md-3">
+      <label class="form-label">Day</label>
+      <input
+        class="form-control"
+        type="number"
+        name="day"
+        min="1"
+        max="31"
+        value="<%= day || '' %>"
+        placeholder="(optional)"
+      >
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Month</label>
+      <input
+        class="form-control"
+        type="number"
+        name="month"
+        min="1"
+        max="12"
+        value="<%= month %>"
+        required
+      >
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Year</label>
+      <input
+        class="form-control"
+        type="number"
+        name="year"
+        value="<%= year %>"
+        required
+      >
+    </div>
+
+    <div class="col-md-3">
+      <button class="btn btn-primary w-100" type="submit">Filter</button>
+    </div>
+  </form>
+
+  <hr>
+  <h4>Total: <span class="text-success">$<%= total %></span></h4>
+</div>
+
+<div class="card p-4 shadow-sm border-0">
+  <h5 class="mb-3">Expenses</h5>
+
+  <table class="table table-hover bg-white rounded">
+    <thead class="table-light">
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if (!expenses || expenses.length === 0) { %>
+        <tr>
+          <td colspan="4" class="text-muted">No expenses for this filter.</td>
+        </tr>
+      <% } else { %>
+        <% expenses.forEach(e => { %>
+          <tr>
+            <td><%= new Date(e.date).toDateString() %></td>
+            <td><%= e.description && e.description.trim() ? e.description : "—" %></td>
+            <td><span class="badge bg-secondary"><%= e.category %></span></td>
+            <td>$<%= e.amount %></td>
+          </tr>
+        <% }) %>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+</div>
+</body>
+</html>
+<%- include('partials/footer') %>
