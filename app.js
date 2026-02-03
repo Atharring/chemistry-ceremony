@@ -56,6 +56,8 @@ app.get("/", (req, res) => {
   return res.redirect("/login");
 });
 
+app.get("/dashboard", (req, res) => res.redirect("/welcome"));
+
 // ✅ 404
 app.use((req, res) => {
   res.status(404).send("404 - Page Not Found");
