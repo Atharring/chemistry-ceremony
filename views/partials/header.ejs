@@ -1,20 +1,38 @@
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <header class="topbar">
-  <div class="brand">
-    <img src="/images/chemistry-horizons.png" alt="Chemistry Horizons" class="logo small" />
-    <div class="brand-text">
-      <div class="title">Chemistry Horizons</div>
-      <div class="subtitle">SSCS 2026 • Ceremony Portal</div>
-    </div>
-  </div>
+  <div class="topbar-inner container">
 
-  <div class="divider"></div>
+    <!-- LEFT: Chemistry Horizons -->
+    <a class="brand" href="/welcome">
+      <div class="brand-icon large">
+        <img src="/images/chemistry-horizons.png" alt="Chemistry Horizons">
+      </div>
 
-  <div class="brand right">
-    <div class="brand-text right-text">
-      <div class="title">Jerash University</div>
-      <div class="subtitle">Official Registration</div>
+      <div class="brand-text">
+        <div class="brand-title">Chemistry Horizons</div>
+        <div class="brand-sub">SSC2 2026 · Ceremony Portal</div>
+      </div>
+    </a>
+
+    <!-- CENTER NAV -->
+    <nav class="nav">
+      <a class="nav-link <%= activePage === 'welcome' ? 'active' : '' %>" href="/welcome">Home</a>
+      <a class="nav-link <%= activePage === 'poster-vote' ? 'active' : '' %>" href="/vote/poster">Best Poster</a>
+      <a class="nav-link <%= activePage === 'results' ? 'active' : '' %>" href="/results/poster">Results</a>
+      <a class="nav-link" href="/logout">Logout</a>
+    </nav>
+
+    <!-- RIGHT: Jerash University -->
+    <div class="org">
+      <div class="org-text">
+        <div class="org-title">Jerash University</div>
+        <div class="org-sub">Official Registration</div>
+      </div>
+
+      <div class="brand-icon large">
+        <img src="/images/jerash-university.png" alt="Jerash University">
+      </div>
     </div>
-    <img src="/images/jerash-university.png" alt="Jerash University" class="logo large" />
+
   </div>
 </header>
