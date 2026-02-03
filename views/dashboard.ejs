@@ -1,102 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+<%- include('partials/header') %>
 
-  <%- include("partials/header") %>
+<main class="container">
+  <section class="hero">
+    <h1>Welcome, <%= user?.name || "Guest" %></h1>
+    <p class="sub">
+      Logged in as <strong><%= user?.email %></strong>
+    </p>
+    <p class="summary">
+      Welcome to the Chemistry Ceremony website. Vote for the best poster (one vote per email),
+      rate the ceremony using 5 questions, see our sponsors, and use the chatbot (soon).
+    </p>
+  </section>
 
-  <div class="container">
-    <div class="card">
-      <h1>Dashboard</h1>
-      <p>
-        Welcome, <strong><%= user.name %></strong> from <strong><%= user.organization %></strong>.
-      </p>
+  <section class="actions">
+    <a class="btn" href="/vote">Vote Best Poster</a>
+    <a class="btn" href="/rate">Rate Ceremony</a>
+    <a class="btn" href="/sponsors">Sponsors</a>
+    <a class="btn" href="/chatbot">Chatbot</a>
+  </section>
+</main>
 
-      <h2 style="margin-top:18px;">Ceremony Summary</h2>
-      <p style="color: rgba(234,240,255,0.78); line-height: 1.7;">
-        Chemistry Horizons (SSCS 2026) is a ceremony to celebrate student and academic achievements,
-        highlight inspiring chemistry talks, and strengthen the community between the university and industry.
-        The event includes opening remarks, featured talks, recognition moments, and closing networking.
-      </p>
-
-      <div style="display:grid; gap:14px; margin-top:18px;">
-        <!-- Button 1: Rate ceremony -->
-        <form method="POST" action="/dashboard/rate" class="card" style="margin:0;">
-  <h2 style="margin-bottom:12px;">Rate the Ceremony</h2>
-  <p style="color: rgba(234,240,255,0.75);">
-    Please rate the following aspects from 1 (Very Poor) to 5 (Excellent).
-  </p>
-
-  <% const questions = [
-    "Overall organization of the ceremony",
-    "Quality of the speakers and talks",
-    "Relevance of topics to chemistry",
-    "Time management and event flow",
-    "Overall satisfaction with the ceremony"
-  ]; %>
-
-  <% questions.forEach((q, index) => { %>
-    <div style="margin:14px 0;">
-      <strong><%= index + 1 %>. <%= q %></strong>
-      <div style="display:flex; gap:12px; margin-top:6px;">
-        <% for (let i = 1; i <= 5; i++) { %>
-          <label style="display:flex; align-items:center; gap:6px;">
-            <input type="radio" name="q<%= index + 1 %>" value="<%= i %>" required>
-            <span><%= i %></span>
-          </label>
-        <% } %>
-      </div>
-    </div>
-  <% }) %>
-
-  <div class="actions" style="margin-top:16px;">
-    <button class="btn primary" type="submit">Submit Evaluation</button>
-  </div>
-</form>
-
-<% if (ratings) { %>
-  <div class="card" style="margin-top:16px;">
-    <h2>Thank you for your feedback</h2>
-    <ul style="line-height:1.8; color: rgba(234,240,255,0.8);">
-      <li>Organization: <%= ratings.organization %>/5</li>
-      <li>Speakers: <%= ratings.speakers %>/5</li>
-      <li>Relevance: <%= ratings.relevance %>/5</li>
-      <li>Time management: <%= ratings.timing %>/5</li>
-      <li>Overall satisfaction: <%= ratings.overall %>/5</li>
-    </ul>
-  </div>
-<% } %>
-
-        <!-- Button 2: Best speaker -->
-        <form method="POST" action="/dashboard/best-speaker" class="card" style="margin:0;">
-          <h2 style="margin:0 0 10px;">Choose Best Speaker</h2>
-
-          <select class="field" name="bestSpeaker" required>
-            <option value="" disabled selected>Select speaker</option>
-            <% speakers.forEach(s => { %>
-              <option value="<%= s %>"><%= s %></option>
-            <% }) %>
-          </select>
-
-          <div class="actions" style="margin-top:12px;">
-            <button class="btn primary" type="submit">Submit Vote</button>
-          </div>
-        </form>
-
-        <!-- 3 more buttons (placeholders) -->
-        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
-          <a class="btn" href="/schedule">View Schedule</a>
-          <a class="btn" href="/speakers">Speakers</a>
-          <a class="btn" href="/contact">Contact / Help</a>
-          <a class="btn" href="/results/best-speaker">Best Speaker Results</a>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-</body>
-</html>
+<%- include('partials/footer') %>
