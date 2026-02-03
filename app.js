@@ -38,14 +38,10 @@ app.use(express.static("public"));
 // make sure session is configured and attendeeId is set on login/register
 app.use(ceremonyRoutes);
 
-app.use('/', require('./routes/auth'));       
-app.use('/', require('./routes/index'));      
-app.use('/', require('./routes/dashboard'));  
-app.use('/', require('./routes/expenses'));   
-app.use('/', require('./routes/bills'));      
-app.use('/', require('./routes/categories')); 
-app.use('/', require('./routes/reports'));    
-app.use( require('./routes/profile'));
+app.get("/", (req, res) => {
+  return res.redirect("/login");
+});
+
 
 
 app.use((req, res) => {

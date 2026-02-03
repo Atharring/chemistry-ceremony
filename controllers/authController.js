@@ -88,3 +88,18 @@ exports.getBestSpeakerResults = async (req, res) => {
   });
 };
 
+exports.getWelcome = async (req, res) => {
+  if (!req.session?.attendeeId) return res.redirect("/login");
+
+  const speakers = ["Dr. Ahmad", "Dr. Lina", "Eng. Sara", "Mr. Omar"];
+  const attendee = await Attendee.findById(req.session.attendeeId).lean();
+
+  return res.render("welcome", {
+    user: req.session.user,
+    speakers,
+    ratings: attendee?.ratings || null,
+    bestSpeaker: attendee?.bestSpeaker || null,
+  });
+};
+
+
