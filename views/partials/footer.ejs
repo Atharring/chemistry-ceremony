@@ -1,36 +1,13 @@
-<footer class="bg-dark text-light mt-5">
-  <div class="container py-4">
-
-    <div class="row align-items-center">
-
-
-      <div class="col-md-6 mb-3 mb-md-0">
-        <h6 class="fw-bold mb-1">BudgetBuddy</h6>
-        <p class="small mb-1">
-          A university student project for tracking personal income,
-          expenses, and monthly budget usage.
-        </p>
-        <p class="small text-muted mb-0">
-          Developed for educational purposes only.
-        </p>
-      </div>
-
-
-      <div class="col-md-6 text-md-end">
-        <h6 class="fw-bold mb-1">Group Members</h6>
-        <p class="small mb-0">Athar barham</p>
-        <p class="small mb-0">Abdullah  Abdelhafez</p>
-        <p class="small mb-0">Rama  Abu Ali</p>
-        <p class="small mb-0">Waleed  Abdulqader</p>
-      </div>
-
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <div class="footer-title"><%= footerTitle || "Chemistry Horizons · Ceremony Portal" %></div>
+      <div class="footer-sub">Built for humans. Rate-limited for safety.</div>
     </div>
 
-    <hr class="border-secondary my-3">
-
-    <div class="text-center text-muted">
-      © 2026 BudgetBuddy • Student Project • All rights reserved
+    <div class="footer-right">
+      <span class="pill"><%= footerTag || "SSCS 2026" %></span>
+      <span class="muted">© <%= new Date().getFullYear() %></span>
     </div>
-
   </div>
 </footer>

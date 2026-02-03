@@ -1,0 +1,36 @@
+<%- include("partials/header", { activePage: "results" }) %>
+
+<main class="page">
+  <div class="container">
+    <section class="card">
+      <h1 class="h1">Best Poster Results</h1>
+      <p class="p">Live counts from submitted votes.</p>
+
+      <div class="grid" style="gap:10px; margin-top: 12px;">
+        <% if (!results || results.length === 0) { %>
+          <div class="poster-card">
+            <div class="poster-code">No votes yet</div>
+            <div class="poster-sub">People are procrastinating. Classic.</div>
+          </div>
+        <% } else { %>
+          <% results.forEach((r, idx) => { %>
+            <div class="poster-card" style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div class="poster-code">#<%= idx + 1 %> · <%= r.poster %></div>
+                <div class="poster-sub"><%= r.votes %> vote(s)</div>
+              </div>
+              <span class="pill">Score</span>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+
+      <div style="margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="/welcome">Back</a>
+        <a class="btn btn-primary" href="/vote/poster">Vote Page</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<%- include("partials/footer") %>

@@ -1,35 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Welcome</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+<%- include("partials/header", {
+  activePage: "welcome",
+  brandTitle: "Chemistry Horizons",
+  brandSub: "SSCS 2026 · Ceremony Portal",
+  orgTitle: "Jerash University",
+  orgSub: "Official Registration",
+  leftLogo: "/images/chemi.png",
+  rightLogo: "/images/jerash.png"
+}) %>
 
-  <%- include("partials/header") %>
-
+<main class="page">
   <div class="container">
-    <div class="card">
-      <h1>Welcome, <%= user.name %></h1>
-      <p>
-        We’re happy to have you with us (<%= user.email %>) from
-        <strong><%= user.organization %></strong>.
+    <section class="card">
+      <h1 class="h1">Welcome</h1>
+      <p class="p">
+        Use the buttons below to vote and view results. Voting is limited to one vote per category.
       </p>
 
-      <h2 style="margin-top:18px;">About the Ceremony</h2>
-      <p>
-        <!-- Put your welcome paragraph here -->
-      </p>
-
-      <h2 style="margin-top:18px;">Ceremony Summary</h2>
-      <ul style="color: rgba(234,240,255,0.78); line-height: 1.8;">
-        <li>Opening remarks and introductions</li>
-        <li>Key highlights and achievements</li>
-        <li>Certificates / acknowledgments</li>
-        <li>Closing and group photo</li>
-      </ul>
-    </div>
+      <div class="grid grid-4">
+        <a class="btn btn-primary" href="/vote/poster">Vote: Best Poster</a>
+        <a class="btn" href="/vote/speaker">Vote: Best Speaker</a>
+        <a class="btn" href="/vote/organization">Rate Organization</a>
+        <a class="btn" href="/results/poster">View Results</a>
+      </div>
+    </section>
   </div>
+</main>
 
-</body>
-</html>
+<%- include("partials/footer", { footerTag: "SSCS 2026" }) %>

@@ -15,6 +15,7 @@ const attendeeSchema = new mongoose.Schema({
     timing: { type: Number, default: null },
     overall: { type: Number, default: null },
   },
+bestPoster: { type: String, default: null }, // "P1" .. "P30"
 
   createdAt: { type: Date, default: Date.now },
 });

@@ -29,6 +29,15 @@ app.use(session({ secret: "x", resave: false, saveUninitialized: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+const ceremonyRoutes = require("./routes/ceremonyRoutes");
+
+// ...
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+// make sure session is configured and attendeeId is set on login/register
+app.use(ceremonyRoutes);
+
 app.use('/', require('./routes/auth'));       
 app.use('/', require('./routes/index'));      
 app.use('/', require('./routes/dashboard'));  

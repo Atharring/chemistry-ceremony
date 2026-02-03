@@ -1,0 +1,44 @@
+<%- include("partials/header", { activePage: "poster-vote" }) %>
+
+<main class="page">
+  <div class="container">
+    <section class="card">
+      <h1 class="h1">Vote: Best Poster</h1>
+      <p class="p">
+        You can vote once. If you already voted, you’ll see your selection.
+      </p>
+
+      <% if (message) { %>
+        <p class="p"><%= message %></p>
+      <% } %>
+
+      <% if (myVote) { %>
+        <div class="poster-card">
+          <div class="poster-code">Your vote: <%= myVote %></div>
+          <div class="poster-sub">Locked in. Democracy achieved.</div>
+        </div>
+        <div style="margin-top:12px;">
+          <a class="btn" href="/results/poster">View Results</a>
+        </div>
+      <% } else { %>
+        <div class="grid grid-4" style="margin-top: 10px;">
+          <% posters.forEach(p => { %>
+            <div class="poster-card">
+              <div class="poster-code"><%= p %></div>
+              <div class="poster-sub">Poster candidate</div>
+
+              <div class="poster-actions">
+                <form method="POST" action="/vote/poster">
+                  <input type="hidden" name="posterCode" value="<%= p %>">
+                  <button class="btn btn-primary" type="submit">Vote</button>
+                </form>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+  </div>
+</main>
+
+<%- include("partials/footer") %>
