@@ -21,17 +21,27 @@ exports.postLogin = async (req, res) => {
 
 // GET /welcome
 exports.getWelcome = async (req, res) => {
-  const speakers = ["Dr. Ahmad", "Dr. Lina", "Eng. Sara", "Mr. Omar"];
+  try {
+    if (!req.session?.attendeeId) return res.redirect("/login");
 
-  const attendee = await Attendee.findById(req.session.attendeeId).lean();
+    const speakers = ["Dr. Ahmad", "Dr. Lina", "Eng. Sara", "Mr. Omar"];
 
-  res.render("welcome", {
-    user: req.session.user,
-    speakers,
-    ratings: attendee?.ratings || null,
-    bestSpeaker: attendee?.bestSpeaker || null,
-  });
+    const attendee = await Attendee.findById(req.session.attendeeId).lean();
+    if (!attendee) return res.redirect("/login");
+
+    return res.render("welcome", {
+      user: req.session.user,
+      speakers,
+      ratings: attendee.ratings || null,
+      bestSpeaker: attendee.bestSpeaker || null,
+      activePage: "welcome",
+    });
+  } catch (err) {
+    console.log("WELCOME ERROR:", err);
+    return res.status(500).send("Internal Server Error");
+  }
 };
+
 
 // POST /best-speaker  (vote once)
 exports.postBestSpeaker = async (req, res) => {

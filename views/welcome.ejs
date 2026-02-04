@@ -1,20 +1,25 @@
-<%- include("partials/header", {
-  activePage: "welcome",
-  brandTitle: "Chemistry Horizons",
-  brandSub: "SSCS 2026 · Ceremony Portal",
-  orgTitle: "Jerash University",
-  orgSub: "Official Registration",
-  leftLogo: "/images/chemi.png",
-  rightLogo: "/images/jerash.png"
-}) %>
+<%- include("partials/header", { activePage: "welcome" }) %>
 
 <main class="page">
   <div class="container">
     <section class="card">
-      <h1 class="h1">Welcome</h1>
-      <p class="p">
-        Use the buttons below to vote and view results. Voting is limited to one vote per category.
-      </p>
+
+      <% if (user) { %>
+        <h1 class="h1">Welcome, <%= user.name %> 👋</h1>
+        <p class="p">You are registered for <strong>Chemistry Horizons (SSC2 2026)</strong>.</p>
+      <% } else { %>
+        <h1 class="h1">Welcome</h1>
+        <p class="p">Session expired. Please login again.</p>
+        <a class="btn btn-primary" href="/login">Go to Login</a>
+      <% } %>
+
+      <hr class="divider" />
+
+      <% if (ratings) { %>
+        <p class="p">✅ Thanks for rating the ceremony.</p>
+      <% } else { %>
+        <p class="p">You can rate the ceremony anytime.</p>
+      <% } %>
 
       <div class="grid grid-4">
         <a class="btn btn-primary" href="/vote/poster">Vote: Best Poster</a>
@@ -22,8 +27,9 @@
         <a class="btn" href="/vote/organization">Rate Organization</a>
         <a class="btn" href="/results/poster">View Results</a>
       </div>
+
     </section>
   </div>
 </main>
 
-<%- include("partials/footer", { footerTag: "SSCS 2026" }) %>
+<%- include("partials/footer", { footerTag: "SSC2 2026" }) %>
