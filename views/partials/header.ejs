@@ -1,5 +1,6 @@
 <% const activePageSafe = typeof activePage !== "undefined" ? activePage : ""; %>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 <header class="topbar">
   <div class="topbar-inner container">
 
@@ -17,9 +18,9 @@
 
     <!-- CENTER NAV -->
     <nav class="nav">
-      <a class="nav-link <%= activePage === 'welcome' ? 'active' : '' %>" href="/welcome">Home</a>
-      <a class="nav-link <%= activePage === 'poster-vote' ? 'active' : '' %>" href="/vote/poster">Best Poster</a>
-      <a class="nav-link <%= activePage === 'results' ? 'active' : '' %>" href="/results/poster">Results</a>
+      <a class="nav-link <%= activePageSafe === 'welcome' ? 'active' : '' %>" href="/welcome">Home</a>
+      <a class="nav-link <%= activePageSafe === 'poster-vote' ? 'active' : '' %>" href="/vote/poster">Best Poster</a>
+      <a class="nav-link <%= activePageSafe === 'results' ? 'active' : '' %>" href="/results/poster">Results</a>
       <a class="nav-link" href="/logout">Logout</a>
     </nav>
 
